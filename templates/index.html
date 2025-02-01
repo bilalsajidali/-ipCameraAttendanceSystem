@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Camera Attendance System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+</head>
+<body class="bg-gray-100">
+    <header class="bg-blue-600 text-white p-4">
+        <h1 class="text-3xl font-bold text-center">IP Camera Attendance System</h1>
+    </header>
+    <main class="flex flex-col items-center justify-center h-screen">
+        <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+            <h2 class="text-2xl font-bold mb-4 text-center">Welcome to the Attendance System</h2>
+            <p class="text-gray-700 mb-6 text-center text-lg">
+                Easily manage and track attendance using IP cameras.
+            </p>
+            <div class="flex flex-col items-center space-y-4">
+                <!-- API Endpoints List -->
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md w-full max-w-md">
+                    <p class="text-lg font-semibold text-center mb-2">API Endpoints:</p>
+                    <ul class="list-disc pl-6 text-gray-800">
+                        <li><span class="font-semibold">/register</span> → Payload: <code>{"name": "string", "id": "string"}</code></li>
+                        <li><span class="font-semibold">/start_monitoring</span> → Start the project (camera system)</li>
+                        <li><span class="font-semibold">/export_attendance</span> → Get same-day report of all users</li>
+                        <li><span class="font-semibold">/export_attendance</span> → Payload: <code>{"id": "string"}</code> Report for a specific user</li>
+                    </ul>
+                </div>
+            
+                <!-- Work in Progress Notice -->
+                <p class="text-red-600 font-semibold text-center text-lg">
+                    🚧 WORK IN PROGRESS 🚧
+                </p>
+            </div>            
+    </main>
+    <footer class="bg-gray-800 text-white p-4 text-center">
+        <p>&copy; Project Created By Muhammad Bilal Sajid.</p>
+    </footer>
+</body>
+</html>
