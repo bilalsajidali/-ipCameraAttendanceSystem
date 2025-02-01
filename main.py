@@ -18,7 +18,6 @@ load_dotenv()
 client = MongoClient(os.getenv("MONGODB_URI"))
 db = client["ipcameraAttendanceSystem"]
 
-print("Database connected successfully", client, os.getenv("MONGODB_URI"))
 EMPLOYEE_FOLDER = "employee_faces/"
 os.makedirs(EMPLOYEE_FOLDER, exist_ok=True)
 
@@ -55,14 +54,12 @@ def is_already_checked_in(employee_id):
         # Get current datetime in pkt, then convert to UTC for comparison
         current_date_pk = get_current_date_pkt()
         
-        print("start_of_day", current_date_pk)
         
         existing_record = db.attendance.find_one({
             "employee_id": employee_id,
             "date": current_date_pk,
         })
         if existing_record:
-            print("existing_record Found in inTime checked!: ", existing_record)
             if existing_record.get('inTime'):
                 return True , existing_record
         else:
@@ -163,7 +160,6 @@ def process_attendance(frame, face_cascade):
                     elif existing_record and not existing_record.get('outTime'):
                         # Convert to datetime object
                         hour=current_time_pk.split(":")[0]
-                        print("hour", hour)
                         if int(hour) >= 7:
                             try:
                                 db.attendance.update_one(
@@ -268,8 +264,6 @@ def export_attendance():
     #         lambda x: str(x['outTime'] - x['inTime']) if x['outTime'] else "N/A", 
     #         axis=1
     #     )
-    print("employee_id", employee_id)
-    print("employee id from req args",  request.args.get('employee_id'))
     if start_date and end_date:
         filename = f"attendance_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
     else:
@@ -281,7 +275,6 @@ def export_attendance():
 @app.route('/register', methods=['POST'])
 def register_employee():
     data = request.json
-    print(data)
     employee_name = data.get("name")
     employee_id = data.get("id")
     
